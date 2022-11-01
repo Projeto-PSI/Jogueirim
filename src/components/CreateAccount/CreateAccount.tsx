@@ -12,16 +12,25 @@ import { Visibility, VisibilityOff } from "@mui/icons-material";
 import dayjs, { Dayjs } from "dayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { useNavigate } from "react-router-dom";
 
 export const CreateAccount: React.FC = () => {
+  const navigate = useNavigate();
+
   const [user, setUser] = React.useState("");
   const [date, setDate] = React.useState<Dayjs | null>(dayjs(new Date()));
   const [gender, setGender] = React.useState("");
   const [contact, setContact] = React.useState("");
   const [showPassword, setShowPassword] = React.useState(false);
   const [password, setPassword] = React.useState("");
+
   const handleClickShowPassword = () => setShowPassword(!showPassword);
+
   const handleMouseDownPassword = () => setShowPassword(!showPassword);
+
+  const handleBackToHomePage = () => {
+    navigate("/");
+  };
 
   const handleDate = (event: any) => {
     setDate(event.target.value);
@@ -218,6 +227,7 @@ export const CreateAccount: React.FC = () => {
                 height: "1.9rem",
               }}
               variant="contained"
+              onClick={handleBackToHomePage}
             >
               Sair
             </Button>

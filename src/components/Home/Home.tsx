@@ -10,11 +10,17 @@ import {
 import { ReactComponent as Logo } from "../../_assets/icons/logo.svg";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import { useNavigate } from "react-router-dom";
 
 export const Home: React.FC = () => {
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = React.useState(false);
   const handleClickShowPassword = () => setShowPassword(!showPassword);
   const handleMouseDownPassword = () => setShowPassword(!showPassword);
+
+  const handleCreateAccount = () => {
+    navigate("/createaccount");
+  };
 
   return (
     <Box
@@ -115,6 +121,7 @@ export const Home: React.FC = () => {
                 height: "6vh",
               }}
               variant="contained"
+              onClick={handleCreateAccount}
             >
               Criar Conta
             </Button>
