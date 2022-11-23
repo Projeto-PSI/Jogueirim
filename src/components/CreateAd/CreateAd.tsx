@@ -18,7 +18,7 @@ export const CreateAd: React.FC = () => {
   // const [gender, setGender] = React.useState("");
   // const [contact, setContact] = React.useState("");
   // const [showPassword, setShowPassword] = React.useState(false);
-  // const [password, setPassword] = React.useState("");
+
 
   return (
     <Box
