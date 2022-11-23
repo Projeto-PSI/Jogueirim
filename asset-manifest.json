@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/Jogueirim/static/css/main.073c9b0a.css",
+    "main.js": "/Jogueirim/static/js/main.5c847714.js",
+    "static/js/787.6b6460f3.chunk.js": "/Jogueirim/static/js/787.6b6460f3.chunk.js",
+    "static/media/logo.svg": "/Jogueirim/static/media/logo.d775b253daab3f33a1c319e656785627.svg",
+    "index.html": "/Jogueirim/index.html",
+    "main.073c9b0a.css.map": "/Jogueirim/static/css/main.073c9b0a.css.map",
+    "main.5c847714.js.map": "/Jogueirim/static/js/main.5c847714.js.map",
+    "787.6b6460f3.chunk.js.map": "/Jogueirim/static/js/787.6b6460f3.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.073c9b0a.css",
+    "static/js/main.5c847714.js"
+  ]
+}
