@@ -7,9 +7,9 @@ import { CreateAd } from "./components/CreateAd";
 
 function App() {
   return (
-    <BrowserRouter basename={process.env.PUBLIC_URL}>
+    <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/Jogueirim" element={<Home />} />
         <Route path="/createAccount" element={<CreateAccount />} />
         <Route path="/createAd" element={<CreateAd />} />
         {/* <CreateAccount /> */}
