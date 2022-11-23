@@ -4,16 +4,14 @@ import {
   Grid,
   TextField,
   Button,
-  InputAdornment,
   IconButton,
-  Stack,
   Typography
 } from "@mui/material/";
 import PhotoCamera from "@mui/icons-material/PhotoCamera";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 export const CreateAd: React.FC = () => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   // const [user, setUser] = React.useState("");
   // const [date, setDate] = React.useState<Dayjs | null>(dayjs(new Date()));
