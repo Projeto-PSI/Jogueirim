@@ -5,7 +5,7 @@ import {
   TextField,
   Button,
   InputAdornment,
-  IconButton,
+  IconButton
 } from "@mui/material/";
 import { ReactComponent as Logo } from "../../_assets/icons/logo.svg";
 import Visibility from "@mui/icons-material/Visibility";
@@ -19,7 +19,11 @@ export const Home: React.FC = () => {
   const handleMouseDownPassword = () => setShowPassword(!showPassword);
 
   const handleCreateAccount = () => {
-    navigate("/createaccount");
+    navigate("/createAccount");
+  };
+
+  const handleLogin = () => {
+    navigate("/createAd");
   };
 
   return (
@@ -27,14 +31,14 @@ export const Home: React.FC = () => {
       sx={{
         width: "100vw",
         height: "100vh",
-        backgroundColor: "#322514",
+        backgroundColor: "#322514"
       }}
     >
       <Grid container justifyContent="center">
         <Box
           sx={{
             width: "69px",
-            height: "69px",
+            height: "69px"
           }}
         >
           <Logo />
@@ -43,23 +47,23 @@ export const Home: React.FC = () => {
       <Grid container justifyContent="center">
         <Box
           sx={{
-            marginTop: "7vh",
+            marginTop: "3rem",
             width: "80vw",
-            height: "70vh",
+            height: "30rem",
             borderRadius: "20px",
-            backgroundColor: "#FFFFFF",
+            backgroundColor: "#FFFFFF"
           }}
         >
           <Grid
             container
             justifyContent="center"
             sx={{
-              marginTop: "10vh",
+              marginTop: "4rem"
             }}
           >
             <TextField
               sx={{
-                width: "60vw",
+                width: "60vw"
               }}
               id="user"
               label="Usuário"
@@ -70,12 +74,12 @@ export const Home: React.FC = () => {
             container
             justifyContent="center"
             sx={{
-              marginTop: "10vh",
+              marginTop: "4rem"
             }}
           >
             <TextField
               sx={{
-                width: "60vw",
+                width: "60vw"
               }}
               id="password"
               label="Senha"
@@ -93,20 +97,21 @@ export const Home: React.FC = () => {
                       {showPassword ? <Visibility /> : <VisibilityOff />}
                     </IconButton>
                   </InputAdornment>
-                ),
+                )
               }}
             />
           </Grid>
           <Grid container justifyContent="center">
             <Button
               sx={{
-                marginTop: "10vh",
+                marginTop: "4rem",
                 borderRadius: "20px",
                 backgroundColor: "#000000",
                 width: "60vw",
-                height: "6vh",
+                height: "2.6rem"
               }}
               variant="contained"
+              onClick={handleLogin}
             >
               Entrar
             </Button>
@@ -114,11 +119,11 @@ export const Home: React.FC = () => {
           <Grid container justifyContent="center">
             <Button
               sx={{
-                marginTop: "5vh",
+                marginTop: "2rem",
                 borderRadius: "20px",
                 backgroundColor: "#6B7B8C",
                 width: "60vw",
-                height: "6vh",
+                height: "2.6rem"
               }}
               variant="contained"
               onClick={handleCreateAccount}
