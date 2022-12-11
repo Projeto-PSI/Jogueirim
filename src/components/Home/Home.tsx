@@ -23,7 +23,7 @@ export const Home: React.FC = () => {
   };
 
   const handleLogin = () => {
-    navigate("/createAd");
+    navigate("/showAds");
   };
 
   return (

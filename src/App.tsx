@@ -4,14 +4,18 @@ import { Home } from "./components/Home";
 import { CreateAccount } from "./components/CreateAccount";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { CreateAd } from "./components/CreateAd";
+import { ShowAds } from "./components/ShowAds";
+import { AdCard } from "./components/AdCard";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/Jogueirim" element={<Home />} />
+        <Route path="/" element={<Home />} />
         <Route path="/createAccount" element={<CreateAccount />} />
         <Route path="/createAd" element={<CreateAd />} />
+        <Route path="/showAds" element={<ShowAds />} />
+        {/* <Route path="/adCard" element={<AdCard />} /> */}
         {/* <CreateAccount /> */}
       </Routes>
     </BrowserRouter>

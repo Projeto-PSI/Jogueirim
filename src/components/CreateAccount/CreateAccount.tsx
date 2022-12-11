@@ -29,7 +29,7 @@ export const CreateAccount: React.FC = () => {
   const handleMouseDownPassword = () => setShowPassword(!showPassword);
 
   const handleBackToHomePage = () => {
-    navigate("/Jogueirim");
+    navigate("/");
   };
 
   const handleDate = (event: any) => {
