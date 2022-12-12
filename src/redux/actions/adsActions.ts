@@ -11,18 +11,18 @@ export const addAd = (ad: any) => {
       .add({
         ad,
         // authorId: authorId,
-        date: new Date()
+        date: new Date(),
       })
       .then(() => {
         dispatch({
           type: "ADD_AD",
-          ad
+          ad,
         });
       })
       .catch((err: any) => {
         dispatch({
           type: "ADD_AD_ERR",
-          err
+          err,
         });
       });
   };
@@ -32,18 +32,18 @@ export const removeTask = (task: any) => {
   return (dispatch: any, getState: any, { getFirebase }: any) => {
     const firestore = getFirebase().firestore();
     firestore
-      .collection("tasks")
+      .collection("ads")
       .doc(task.id)
       .delete()
       .then(() => {
         dispatch({
-          type: "REMOVE_AD"
+          type: "REMOVE_AD",
         });
       })
       .catch((err: any) => {
         dispatch({
           type: "REMOVE_AD_ERR",
-          err
+          err,
         });
       });
   };
@@ -59,55 +59,42 @@ export const toggleChecked = (task: any) => {
       .set(
         {
           ...task,
-          checked: !task.checked
+          checked: !task.checked,
         },
         { merge: true }
       )
       .then(() => {
         dispatch({
           type: "TOGGLE_CHECKED",
-          task
+          task,
         });
       })
       .catch((err: any) => {
         dispatch({
           type: "TOGGLE_CHECKED_ERR",
-          err
+          err,
         });
       });
   };
 };
 
 export const getAds = () => {
-  return async (dispatch: any) => {
-    try {
-      const docs = await firebase.firestore().collection("ads").get();
-      const arr: any[] = [];
-      docs.forEach((doc) => {
-        const {
-          createdAt,
-          fileName,
-          filePath,
-          imageUrl,
-          uploaderName,
-          uploaderId
-        } = doc.data();
-        arr.push({
-          createdAt,
-          fileName,
-          filePath,
-          imageUrl,
-          uploaderName,
-          uploaderId,
-          id: doc.id
-        });
+  return (dispatch: any, getState: any, { getFirebase }: any) => {
+    const firestore = getFirebase().firestore();
+    // const authorId = getState().firebase.auth.uid;
+
+    firestore
+      .collection("ads")
+      .get()
+      .doc()
+      .get()
+      .then((doc: any) => {
+        if (doc.exists) {
+          const data = doc.data();
+          dispatch({ type: "GET_ADS", data });
+        } else {
+          console.log("does not exist");
+        }
       });
-      dispatch({
-        type: "GET_IMAGES",
-        payload: arr
-      });
-    } catch (err) {
-      console.log(err);
-    }
   };
 };

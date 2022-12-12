@@ -8,15 +8,14 @@ import { compose } from "redux";
 import { firestoreConnect } from "react-redux-firebase";
 import { getAds } from "../../redux/actions/adsActions";
 import { useSelector, useDispatch } from "react-redux";
+import { NavBar } from "../NavBar";
+import db from "../../config/firebase";
 
-interface ShowAdsProps {
-  ads?: any;
-}
-
-export const ShowAds: React.FC<ShowAdsProps> = ({ ads }) => {
+export const ShowAds: React.FC = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
+  const [info, setInfo] = React.useState<any[]>([]);
+  // console.log(info);
   const handleCreateAccount = () => {
     navigate("/createAccount");
   };
@@ -24,13 +23,36 @@ export const ShowAds: React.FC<ShowAdsProps> = ({ ads }) => {
   const handleLogin = () => {
     navigate("/showAds");
   };
-  React.useEffect(() => {
-    dispatch(getAds());
 
-    // eslint-disable-next-line
-  }, []);
+  // window.addEventListener("load", () => {
+  //   Fetchdata();
+  // });
 
-  const showingAds = ads!.map((data: any) => {
+  // const getMarkers = async () => {
+  //   await db
+  //     .collection("ads")
+  //     .get()
+  //     .then((querySnapshot) => {
+  //       querySnapshot.docs.forEach((doc) => {
+  //         setInfo(doc.data().title);
+  //       });
+  //     });
+  // };
+  // Fetch the required data using the get() method
+  // const Fetchdata = () => {
+  //   db.collection("ads")
+  //     .get()
+  //     .then((querySnapshot: any) => {
+  //       // Loop through the data and store
+  //       // it in array to display
+  //       querySnapshot.forEach((element: any) => {
+  //         const data = element.data();
+  //         setInfo((arr: any) => [...arr, data]);
+  //       });
+  //     });
+  // };
+
+  const showingAds = teste!.map((data: any) => {
     return (
       <Grid
         container
@@ -57,9 +79,10 @@ export const ShowAds: React.FC<ShowAdsProps> = ({ ads }) => {
       sx={{
         width: "100vw",
         height: "100vh",
-        backgroundColor: "#FFFFFF"
+        backgroundColor: "#FFFFFF",
       }}
     >
+      <NavBar />
       {showingAds}
     </Box>
   );

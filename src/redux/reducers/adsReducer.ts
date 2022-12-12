@@ -1,12 +1,24 @@
 import { toast } from "react-toastify";
 
 const adsReducer = (state = {}, action: any) => {
+  const { data } = action;
+
   switch (action.type) {
     case "ADD_AD": {
       toast.success("Added an ad");
       return state;
     }
     case "ADD_AD_ERR": {
+      toast.error("An error occurred");
+      return state;
+    }
+    case "GET_ADS": {
+      return {
+        ...state,
+        data,
+      };
+    }
+    case "GET_AD_ERR": {
       toast.error("An error occurred");
       return state;
     }
