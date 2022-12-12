@@ -47,7 +47,7 @@ export const ShowAds: React.FC = () => {
         <Box
           sx={{
             width: "100%",
-            maxHeight: "50vh",
+            maxHeight: "33vh",
             height: "100%",
             // display: "flex",
             justifyContent: "center"
