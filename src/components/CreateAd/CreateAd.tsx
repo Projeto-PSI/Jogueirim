@@ -6,14 +6,13 @@ import {
   Button,
   IconButton,
   Typography,
-  ImageList,
+  ImageList
 } from "@mui/material/";
 import PhotoCamera from "@mui/icons-material/PhotoCamera";
 // import { useNavigate } from "react-router-dom";
-import { addAd } from "../../redux/actions/adsActions";
 import { connect, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import db from "../../config/firebase";
+import db from "../../config/db";
 
 export const CreateAd: React.FC = () => {
   const navigate = useNavigate();
@@ -23,7 +22,7 @@ export const CreateAd: React.FC = () => {
   const [adName, setAdName] = React.useState("");
   const [description, setDescription] = React.useState("");
   const [category, setCategory] = React.useState("");
-  const dispatch = useDispatch();
+
 
   const handleImage = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files!;
@@ -51,23 +50,25 @@ export const CreateAd: React.FC = () => {
   const handleCategory = (e: React.ChangeEvent<HTMLInputElement>) => {
     setCategory(e.target.value);
   };
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: any) => {
     e.preventDefault();
-    // db.collection("ads")
-    //   .add({
-    //     adName: adName,
-    //     description: description,
-    //     category: category,
-    //     price: price,
-    //     image: image,
-    //   })
-    //   .then((docRef) => {
-    //     alert("Data Successfully Submitted");
-    //   })
-    //   .catch((error) => {
-    //     console.error("Error adding document: ", error);
-    //   });
-    dispatch(addAd({ image, adName, description, category, price }));
+    console.log("ok");
+
+    db.collection("ads")
+      .add({
+        adName: adName,
+        description: description,
+        category: category,
+        price: price,
+        image: image
+      })
+      .then((docRef: any) => {
+        console.log("Data Successfully Submitted");
+      })
+      .catch((error: any) => {
+        console.error("Error adding document: ", error);
+      });
+
     navigate("/showAds");
     // addAd(adName)
   };
@@ -78,14 +79,14 @@ export const CreateAd: React.FC = () => {
       sx={{
         width: "100vw",
         height: "100vh",
-        backgroundColor: "#FFFFFF",
+        backgroundColor: "#FFFFFF"
       }}
     >
       <Grid
         container
         justifyContent="center"
         sx={{
-          backgroundColor: "#F9F6EE",
+          backgroundColor: "#F9F6EE"
         }}
       >
         {!image && (
@@ -97,7 +98,7 @@ export const CreateAd: React.FC = () => {
                 height: "15rem",
                 borderRadius: "5px",
                 borderColor: "#322514",
-                borderStyle: "dotted",
+                borderStyle: "dotted"
               }}
               display="flex"
               justifyContent="center"
@@ -157,7 +158,7 @@ export const CreateAd: React.FC = () => {
       <Grid sx={{ backgroundColor: "#FFFFFF", margin: "1.5rem 0 0 1rem" }}>
         <TextField
           sx={{
-            width: "90vw",
+            width: "90vw"
           }}
           id="adName"
           label="Título da atividade"
@@ -169,7 +170,7 @@ export const CreateAd: React.FC = () => {
       <Grid sx={{ backgroundColor: "#FFFFFF", margin: "1.5rem 0 0 1rem" }}>
         <TextField
           sx={{
-            width: "90vw",
+            width: "90vw"
           }}
           id="description"
           label="Descrição"
@@ -182,7 +183,7 @@ export const CreateAd: React.FC = () => {
       <Grid sx={{ backgroundColor: "#FFFFFF", margin: "1.5rem 0 0 1rem" }}>
         <TextField
           sx={{
-            width: "90vw",
+            width: "90vw"
           }}
           id="category"
           label="Categoria"
@@ -190,7 +191,7 @@ export const CreateAd: React.FC = () => {
           onChange={handleCategory}
           select
           SelectProps={{
-            native: true,
+            native: true
           }}
         >
           <option value=""> </option>
@@ -202,7 +203,7 @@ export const CreateAd: React.FC = () => {
       <Grid sx={{ backgroundColor: "#FFFFFF", margin: "1.5rem 0 0 1rem" }}>
         <TextField
           sx={{
-            width: "90vw",
+            width: "90vw"
           }}
           id="price"
           label="Preço"

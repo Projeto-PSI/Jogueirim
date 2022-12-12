@@ -6,11 +6,11 @@ const firebaseConfig = {
   projectId: "projeto-psi-abe0b",
   storageBucket: "projeto-psi-abe0b.appspot.com",
   messagingSenderId: "247918262643",
-  appId: "1:247918262643:web:638ee2909c4cd6145a2d06",
+  appId: "1:247918262643:web:638ee2909c4cd6145a2d06"
 };
 
 // Initialize Firebase
-const firebaseApp = firebase.initializeApp(firebaseConfig);
+firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
 export default db;

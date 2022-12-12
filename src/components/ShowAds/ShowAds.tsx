@@ -6,70 +6,65 @@ import { AdCard } from "../AdCard";
 import { connect } from "react-redux";
 import { compose } from "redux";
 import { firestoreConnect } from "react-redux-firebase";
-import { getAds } from "../../redux/actions/adsActions";
 import { useSelector, useDispatch } from "react-redux";
 import { NavBar } from "../NavBar";
-import db from "../../config/firebase";
+import db from "../../config/db";
 
 export const ShowAds: React.FC = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
   const [info, setInfo] = React.useState<any[]>([]);
-  // console.log(info);
-  const handleCreateAccount = () => {
-    navigate("/createAccount");
+
+  window.addEventListener("load", () => {
+    Fetchdata();
+  });
+
+  const Fetchdata = () => {
+    db.collection("ads")
+      .get()
+      .then((querySnapshot) => {
+        // Loop through the data and store
+        // it in array to display
+        querySnapshot.forEach((element) => {
+          var data = element.data();
+          setInfo((arr) => [...arr, data]);
+        });
+      });
   };
 
-  const handleLogin = () => {
-    navigate("/showAds");
-  };
-
-  // window.addEventListener("load", () => {
-  //   Fetchdata();
-  // });
-
-  // const getMarkers = async () => {
-  //   await db
-  //     .collection("ads")
-  //     .get()
-  //     .then((querySnapshot) => {
-  //       querySnapshot.docs.forEach((doc) => {
-  //         setInfo(doc.data().title);
-  //       });
-  //     });
-  // };
-  // Fetch the required data using the get() method
-  // const Fetchdata = () => {
-  //   db.collection("ads")
-  //     .get()
-  //     .then((querySnapshot: any) => {
-  //       // Loop through the data and store
-  //       // it in array to display
-  //       querySnapshot.forEach((element: any) => {
-  //         const data = element.data();
-  //         setInfo((arr: any) => [...arr, data]);
-  //       });
-  //     });
-  // };
-
-  const showingAds = teste!.map((data: any) => {
+  const showingAds = info!.map((data: any) => {
     return (
       <Grid
         container
         direction="row"
         justifyContent="center"
         alignItems="center"
-        sx={{ padding: "1rem 0" }}
+        sx={{ padding: "1rem 0", width: "100%" }}
       >
-        <AdCard
-          name={data.name}
-          category={"Aluguel"}
-          description={data.description}
-          price={data.price}
-          image={
-            "https://img.freepik.com/fotos-gratis/figura-triangular-geometrica-legal-em-uma-luz-de-laser-neon-otima-para-fundos-e-papeis-de-parede_181624-9331.jpg?w=2000"
-          }
-        />
+        {/* height="100%"
+      display="flex"
+      justifyContent="center"
+    flexDirection="column" */}
+        <Box
+          sx={{
+            width: "100%",
+            maxHeight: "50vh",
+            height: "100%",
+            // display: "flex",
+            justifyContent: "center"
+          }}
+        >
+          <div id="outer">
+            <div id="inner" style={{ width: "50%", margin: "0 auto" }}>
+              <AdCard
+                name={data.adName}
+                category={data.category}
+                description={data.description}
+                price={data.price}
+                image={data.image}
+              />
+            </div>
+          </div>
+        </Box>
       </Grid>
     );
   });
@@ -79,10 +74,11 @@ export const ShowAds: React.FC = () => {
       sx={{
         width: "100vw",
         height: "100vh",
-        backgroundColor: "#FFFFFF",
+        backgroundColor: "#FFFFFF"
       }}
     >
       <NavBar />
+
       {showingAds}
     </Box>
   );

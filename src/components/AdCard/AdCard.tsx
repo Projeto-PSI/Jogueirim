@@ -1,6 +1,6 @@
 import * as React from "react";
 import { styled } from "@mui/material/styles";
-import { Card, Button, Grid } from "@mui/material";
+import { Card, Button, Grid, Box } from "@mui/material";
 import CardHeader from "@mui/material/CardHeader";
 import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
@@ -31,7 +31,7 @@ export const AdCard: React.FC<AdCardProps> = ({
   image
 }) => {
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ maxWidth: 280, maxHeight: 400 }}>
       <CardMedia
         component="img"
         height="140"
@@ -45,8 +45,12 @@ export const AdCard: React.FC<AdCardProps> = ({
         <Typography variant="body1" color="text.secondary">
           {description}
         </Typography>
-        <Typography variant="body2" color="text.secondary">
-          {price}
+        <Typography
+          variant="body2"
+          color="text.secondary"
+          sx={{ fontWeight: 1000 }}
+        >
+          Preço: R$ {price}
         </Typography>
         <Grid
           container
@@ -55,7 +59,7 @@ export const AdCard: React.FC<AdCardProps> = ({
           alignItems="flex-end"
         >
           <Typography variant="subtitle1" color="text.secondary">
-            {category}
+            Categoria: {category}
           </Typography>
         </Grid>
       </CardContent>
